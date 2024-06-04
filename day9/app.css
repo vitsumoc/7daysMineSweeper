@@ -1,0 +1,141 @@
+* {
+  margin: 0;
+  padding: 0;
+  user-select: none;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  box-sizing: border-box;
+}
+
+#ctrlBox {
+  width: 20%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+#gameBox {
+  width: 80%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  background-color: #333;
+}
+
+#uiBox {
+  visibility: hidden;
+  width: 600px;
+  height: 80px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#bomb-left {
+  width: 80px;
+  height: 80px;
+}
+
+#sun {
+  width: 80px;
+  height: 80px;
+  background-color: aqua;
+  background-image: url('asset/sun.png');
+  background-size: 400% 100%;
+  background-repeat: no-repeat;
+  background-position: 0px;
+}
+
+#time {
+  width: 80px;
+  height: 80px;
+  font-size: 80px;
+  color: #f7f7f7;
+  display: flex;
+  justify-content:flex-end;
+  align-items: center;
+}
+
+#container {
+  height: 0px;
+  width: 0px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#menu {
+  width: 100%;
+  height: 20%;
+  display: flex;
+  flex-direction: column;
+  background-color: blanchedalmond;
+}
+
+#records {
+  width: 100%;
+  height: 80%;
+}
+
+#level {
+  width: 100%;
+  height: 50%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.my-radio {
+  width: 26%;
+  height: 44%;
+  background-image: url("asset/btnNormal.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  color: #f7f7f7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.my-radio-selected {
+  background-image: url("asset/btnSelectd.png");
+}
+
+#start-box {
+  width: 100%;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#start-btn {
+  width: 66%;
+  height: 44%;
+  background-image: url("asset/btnNormal.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  color: #f7f7f7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#record-table {
+  width: 100%;
+  height: 100%;
+}
+
+#record-table {font-family: verdana,arial,sans-serif;font-size:18px;color:#333333;border-width: 1px;border-color: #666666;border-collapse: collapse;}
+
+#record-table th {border-width: 1px;padding: 8px;border-style: solid;border-color: #666666;background-color: #dedede;}
+
+#record-table td {border-width: 1px;padding: 8px;border-style: solid;border-color: #666666;background-color: #ffffff;}

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="app.css">
+    <title>扫雷</title>
+</head>
+<body>
+    <div id="ctrlBox"></div>
+    <div id="gameBox">
+        <div id="wrapper">
+            <div id="container"></div>
+        </div>
+    </div>
+</body>
+<script src="settings.js"></script>
+<script src="board.js"></script>
+<script src="cell.js"></script>
+<script src="view_dom.js"></script>
+<script src="game.js"></script>
+<script>
+    var container = document.getElementById("container");
+    app.init(container, 10, 10, 20);
+</script>
+</html>

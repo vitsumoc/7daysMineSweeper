@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="app.css">
+    <title>扫雷</title>
+</head>
+<body>
+    <div id="ctrlBox">
+        <div id="records">
+            <table id="record-table">
+                <thead>
+                    <tr>
+                        <th>玩家</th>
+                        <th>成绩</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="table-name"></td>
+                        <td class="table-time"></td>
+                    </tr>
+                    <tr>
+                        <td class="table-name"></td>
+                        <td class="table-time"></td>
+                    </tr>
+                    <tr>
+                        <td class="table-name"></td>
+                        <td class="table-time"></td>
+                    </tr>
+                    <tr>
+                        <td class="table-name"></td>
+                        <td class="table-time"></td>
+                    </tr>
+                    <tr>
+                        <td class="table-name"></td>
+                        <td class="table-time"></td>
+                    </tr>
+                    <tr>
+                        <td class="table-name"></td>
+                        <td class="table-time"></td>
+                    </tr>
+                    <tr>
+                        <td class="table-name"></td>
+                        <td class="table-time"></td>
+                    </tr>
+                    <tr>
+                        <td class="table-name"></td>
+                        <td class="table-time"></td>
+                    </tr>
+                    <tr>
+                        <td class="table-name"></td>
+                        <td class="table-time"></td>
+                    </tr>
+                    <tr>
+                        <td class="table-name"></td>
+                        <td class="table-time"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="menu">
+            <div id="level">
+                <div id="easy" class="my-radio">简单</div>
+                <div id="normal" class="my-radio my-radio-selected">普通</div>
+                <div id="hard" class="my-radio">困难</div>
+            </div>
+            <div id="start-box">
+                <div id="start-btn">开始</div>
+            </div>
+        </div>
+    </div>
+    <div id="gameBox">
+        <div id="uiBox">
+            <div id="bomb-left"></div>
+            <div id="sun"></div>
+            <div id="time">0</div>
+        </div>
+        <div id="container"></div>
+    </div>
+</body>
+<script src="jquery/jquery-3.6.0.min.js"></script>
+<script src="layer/layer.js"></script>
+<script src="ms/settings.js"></script>
+<script src="ms/board.js"></script>
+<script src="ms/cell.js"></script>
+<script src="ms/view_svg.js"></script>
+<script src="ms/game.js"></script>
+<script src="app.js"></script>
+</html>

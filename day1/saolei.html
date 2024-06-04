@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>扫雷</title>
+    <style type="text/css">
+      * {
+        margin: 0;
+        padding: 0;
+        user-select: none;
+      }
+      body {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-sizing: border-box;
+        background-color: #333;
+      }
+      #container {
+        height: 600px;
+        width: 600px;
+        background-color: #f7f7f7;
+        display: flex;
+        flex-wrap: wrap;
+      }
+      .item {
+        width: 30px;
+        height: 30px;
+        border: 1px solid #332200;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container"></div>
+  </body>
+  <script type="text/javascript">
+    // 行
+    var row_count = 20;
+    // 列
+    var column_count = 20;
+    // 雷
+    var boom_count = 50;
+    // 失败
+    var fail = false;
+    // 打开区域
+    var clear_area = 0;
+    var container = document.getElementById('container')
+    var doms = []
+    for (var x = 0; x < row_count; x++) {
+      var row = []
+      for (var y = 0; y < column_count; y++) {
+        var div = document.createElement('div')
+        div.setAttribute('class', 'item');
+        row.push({dom: div, is_boom: false, opened: false})
+        container.appendChild(div)
+      }
+      doms.push(row)
+    }
+    
+    //初始化覆盖每一个雷点
+    for (var x in doms) {
+      var row = doms[x]
+      for (var y in row) {
+        row[y].dom.innerHTML = '*'
+      }
+    }
+    
+    //初始化每一颗雷
+    var inited_boom = 0
+    var current_time = 0
+    while (inited_boom < boom_count) {
+      //通过序号获取当前点
+      var index = current_time % (row_count * column_count)
+      var row = parseInt(index / column_count)
+      var column = index % column_count
+      
+      var item = doms[row][column]
+      //随机生成雷 2%概率
+      if (Math.random() < 0.02) {
+        if (!item.is_boom) {
+          item.is_boom = true
+          inited_boom++
+          //item.dom.innerHTML = '+'
+        }
+      }
+      //进入下一个点
+      current_time++
+    }
+    
+    //当方块被点击
+    for (var x in doms) {
+      (function(x) {
+        var row = doms[x]
+        for (var y in row) {
+          (function(y) {
+            var item = row[y]
+            item.dom.addEventListener('click', function() {
+              //已经输了
+              if (fail) {
+                alert('你输了，刷新吧')
+                return
+              }
+              //点雷结束
+              if (item.is_boom) {
+                fail = true
+                alert('你输了，刷新吧')
+                return
+              }
+              //已经打开过了
+              if (item.opened) {
+                return
+              }
+              //如果不是雷，就触发打开动作，递归的显示一片区域
+              open_this(x, y)
+            })
+          } (y))
+        }
+      } (x))
+    }
+    
+    function open_this(x, y) {
+      var x = Number(x)
+      var y = Number(y)
+      //已经打开，无事发生
+      if (doms[x][y].opened) {
+        return
+      }
+      //标记打开
+      doms[x][y].opened = true
+      //计算身边雷的数量，并且填写数字的方法
+      if (show_boom_count(x, y) == 0) {
+        //遍历身边的方块，只要不是雷就全部打开
+        for (var xx = x - 1; xx < x + 2; xx++) {
+          for (var yy = y - 1; yy < y + 2; yy++) {
+            if (doms[xx] && doms[xx][yy]) {
+              if (!doms[xx][yy].is_boom && !doms[xx][yy].opened) {
+                open_this(xx, yy)
+              }
+            }
+          }
+        }
+      }
+      //记录已经打开的方块数量，全部打开则胜利
+      clear_area++
+      if (clear_area + boom_count == (row_count * column_count)) {
+        alert('你赢了，大神，刷新吧')
+      }
+    }
+    
+    function show_boom_count(x, y) {
+      var boom_count = 0
+      for (var xx = x - 1; xx < x + 2; xx++) {
+        for (var yy = y - 1; yy < y + 2; yy++) {
+          if (doms[xx] && doms[xx][yy]) {
+            if (doms[xx][yy].is_boom) {
+              boom_count++
+            }
+          }
+        }
+      }
+      if (boom_count > 0) {
+        doms[x][y].dom.innerHTML = boom_count
+      } else {
+        doms[x][y].dom.innerHTML = ''
+      }
+      //根据雷的多少赋予颜色
+      if (boom_count < 3) {
+        doms[x][y].dom.style.color = "#33DD00"
+      } else if (boom_count < 6) {
+        doms[x][y].dom.style.color = "#DDDD00"
+      } else {
+        doms[x][y].dom.style.color = "#DD3300"
+      }
+      return boom_count
+    }
+  </script>
+</html>
